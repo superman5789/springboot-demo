@@ -9,7 +9,6 @@ import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +21,6 @@ import javax.annotation.Resource;
  */
 @Service
 public class SearchServiceImpl implements SearchService {
-
-	@Resource
-	private ElasticsearchRestTemplate elasticsearchRestTemplate;
 
 	@Resource
 	private EsGoodsSpuRepository esGoodsSpuRepository;
@@ -69,6 +65,6 @@ public class SearchServiceImpl implements SearchService {
 				.withPageable(pageRequest)
 				.withSort(SortBuilders.scoreSort());
 
-		return null;
+		return esGoodsSpuRepository.search(nativeSearchQueryBuilder.build());
 	}
 }
