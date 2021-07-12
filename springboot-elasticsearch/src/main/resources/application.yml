@@ -1,0 +1,4 @@
+# 搜索
+elasticsearch:
+  host: 192.168.211.61
+  port: 9200
